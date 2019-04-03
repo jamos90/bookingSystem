@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  componentTitle = "I am a new component"
+
+  //you do not need to define the clickHandler as a function just as below.
+  clickHandler() {
+    console.log('hello world')
+  }
 }
