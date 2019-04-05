@@ -17,7 +17,7 @@ export class RentalListComponent implements OnInit {
       image: 'http//via/placeholder.com/350*250',
       bedrooms: 3,
       description: 'Very nice apartment',
-      datilyRate: 34,
+      dailyRate: 34,
       shared: false,
       createdAt: "05/04/19"
     },
