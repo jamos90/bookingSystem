@@ -10,7 +10,7 @@ const rentalSchema = new Schema({
     street: {type: String, required:true },
     bedrooms: Number,
     shared: Boolean,
-    discription: {type: String, required:true},
+    description: {type: String, required:true},
     dailyRate: Number,
     careatedAt: {type: Date, default: Date.now}
 })
