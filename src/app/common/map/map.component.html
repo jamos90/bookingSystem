@@ -1,0 +1,24 @@
+<agm-map 
+(mapReady)="mapReadyHandler()" 
+[latitude]="lat" 
+[longitude]="lng"
+[zoom]= "13"
+>
+  <agm-circle *ngIf="!isPostionError && lat && lng"
+  [latitude]="lat" 
+  [longitude]="lng"
+  [radius]="800"
+  [fillColor]="'#F44336'"
+  [fillOpacity]="0.4">
+</agm-circle>
+
+<agm-info-window *ngIf = "isPostionError"
+  [latitude]="0" 
+  [longitude]="0"
+  [maxWidth]="300"
+  [isOpen]="true" 
+>
+There was an error finding you location, please refresh and try again.
+</agm-info-window>
+</agm-map>
+
