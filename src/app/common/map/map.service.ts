@@ -27,8 +27,9 @@ export class MapService {
     private isLocationCached(location): boolean {
         return this.locationCache[this.camelize(location)];
     }
+    
  
-    public geoCodeLocation(location:string): Observable<any> {
+    public getGeoLocation(location:string): Observable<any> {
         console.log('im getting here');
         this.geoCoder = new (<any>window).google.maps.Geocoder()
         return new Observable((oberver)=>{
