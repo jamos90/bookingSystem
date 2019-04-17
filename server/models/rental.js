@@ -12,7 +12,8 @@ const rentalSchema = new Schema({
     shared: Boolean,
     description: {type: String, required:true},
     dailyRate: Number,
-    careatedAt: {type: Date, default: Date.now}
+    careatedAt: {type: Date, default: Date.now},
+    image: String
 })
 
 module.exports = mongoose.model('Rental', rentalSchema);
