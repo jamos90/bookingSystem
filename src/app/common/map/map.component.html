@@ -1,3 +1,4 @@
-<p>
-  map works!
-</p>
+<agm-map (mapReady)="mapReadyHandler()" [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
