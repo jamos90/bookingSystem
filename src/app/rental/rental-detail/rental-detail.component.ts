@@ -30,8 +30,12 @@ export class RentalDetailComponent implements OnInit {
       (data: Rental)=>{
         this.rental = data;
 
+        console.log(this.rental);
+
     })
 
   }
+
+ 
 
 }
