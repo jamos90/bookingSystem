@@ -17,7 +17,8 @@ export class MapComponent implements OnInit {
   lng;
 
   constructor(private mapService: MapService,
-              private ref: ChangeDetectorRef) { }
+              private ref: ChangeDetectorRef
+            ) { }
 
   
 
