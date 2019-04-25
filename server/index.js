@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const config = require('./config/dev');
 const rental = require('./models/rental');
 const FakeDb = require('./fake-db');
-const rentalRoutes = require('./routes/rentals');
+
+const rentalRoutes = require('./routes/rentals'),
+      userRoutes = require('./routes/users');
 
 // mongodb+srv://jamosamos90:M3lb0urne15!@cluster0-rxeiw.mongodb.net/test?retryWrites=true
 
@@ -16,8 +19,10 @@ mongoose.connect(config.dbUri).then(()=>{
 })
 
 const app = express();
-
+//body parser allows us to use the req.body acessor in our controller 
+app.use(bodyParser.json());
 app.use('/api/v1/rentals', rentalRoutes );
+app.use('/api/v1/users', userRoutes );
 
 const PORT = process.env.PORT || 3001
 
