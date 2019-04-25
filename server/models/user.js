@@ -18,7 +18,7 @@ const userSchema = new Schema({
         required: 'Email is required',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/] 
     },
-    passsWord: {
+    password: {
         type: String,
         max: [100, 'Too long, 100 is the max number of charaters'],
         min: [4, 'Too short minimum number of characters in 4'],
