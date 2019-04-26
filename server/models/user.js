@@ -30,6 +30,13 @@ const userSchema = new Schema({
     }]
 })
 
+//Schema.methods allows you to create your own methods 
+userSchema.methods.isSamePassword = function(requestedPassword) {
+    //uses the bcrypt library to compare the passed password with that sorted agisnt this user. Need to use bcrypt because the pass
+    //word is hashed.
+    return bcrypt.compareSync(requestedPassword, this.password);
+}
+
 //callback funciton is called just before data is saved to db. Good place to encode sensitive information.
 userSchema.pre('save', function(next){
     //this context holds our user when it is being saved. Gives access to password etc
@@ -43,7 +50,7 @@ userSchema.pre('save', function(next){
             //calls the functions that our next in the que. Saving user to database for example. Is required.
             next();
         });
-    })
-})
+    });
+});
 
 module.exports = mongoose.model('User', userSchema);
