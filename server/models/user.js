@@ -31,7 +31,7 @@ const userSchema = new Schema({
 })
 
 //Schema.methods allows you to create your own methods 
-userSchema.methods.isSamePassword = function(requestedPassword) {
+userSchema.methods.hasSamePassword = function(requestedPassword) {
     //uses the bcrypt library to compare the passed password with that sorted agisnt this user. Need to use bcrypt because the pass
     //word is hashed.
     return bcrypt.compareSync(requestedPassword, this.password);
