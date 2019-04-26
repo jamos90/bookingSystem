@@ -96,21 +96,21 @@ router.authMiddleWare = async function(req,res, next) {
     const token = req.headers.authorization;
 
     if(token) {
-        const user = this.parseToken(token);
-        try {
+        const user = router.parseToken(token);
 
-         const user = await User.findById(user.userId)
-
-            if(user) {
-                res.locals.user = user
-                //next forwards the request to the next middleware or route handler. Needs to be called when using middleware.
-                next()
+        User.findById(user.userId, function(err, user){
+            if(err) {
+                return res.status(422).send({errors: mongooseHelpers.normailiseErrors(err.errors)});
             }
-        } catch(err) {
-            return res.status(422).send({errors: mongooseHelpers.normailiseErrors(err.errors)});
-        }
-
-    } 
+            if(user) {
+                res.locals.user = user;
+                next();
+            }
+            else {
+                return res.status(422).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});
+            }
+        })
+    }
     else {
         return res.status(422).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});
     }
