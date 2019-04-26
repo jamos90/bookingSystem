@@ -12,7 +12,7 @@ const userRoutes = require('./routes/user');
 
 mongoose.connect(config.dbUri).then(()=>{
     const fakeDb = new FakeDb();
-    // fakeDb.seedDb();
+    fakeDb.seedDb();
 })
 .catch((error)=>{
     console.error(error);
