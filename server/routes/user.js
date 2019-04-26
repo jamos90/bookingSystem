@@ -1,11 +1,44 @@
 const express = require('express');
 const router = express.Router();
+const mongooseHelpers = require('../helpers/mongoose')
 const userController = require('../controllers/user.controller')
 const User = require('../models/user')
 
-// router.post('/auth', userController.auth());
+router.post('/auth', async function(req,res){
+    //destructurizing, allows you to write on one line what would otherwise be seperate lines and varaibles for each data point.
+    const { email, password } = req.body;
 
-// router.post('/register', userController.register());
+    //error handling: if password or email are not part of the request or if they are empty strings.
+    if(!email || email === "") {
+        return res.status(422).send({errors:[{title:'Login Error!', detail: 'Email is required'}]});
+    }
+ 
+    if(!password || password === "") {
+        return res.status(422).send({errors:[{title:'Login Error!', detail: 'Password is required'}]});
+    }
+    //try catch block
+    try {
+        //uses await to check if a user exists. Remainder of block waits for await to return
+        const user = await User.findOne({email});
+
+        if(!user) {
+            return res.status(422).send({errors:[{title:'Login Error', detail: 'Email is not registrd'}]});
+        }
+
+        if(user.isSamePassword(password)){
+
+            //impelment JWT toekn
+        }
+        else {
+            return res.status(422).send({errors:[{title:'Login Error', detail: 'Wrong emial or password provided'}]});
+        }
+    }catch(err){
+        return res.status(422).send({errors: mongooseHelpers.normailiseErrors(err.errors)});
+    }
+
+
+});
+
 router.post('/register', function(req,res){
 
     //destructurizing, allows you to write on one line what would otherwise be seperate lines and varaibles for each data point.
@@ -44,7 +77,7 @@ router.post('/register', function(req,res){
         //saves the user to the database. 
         user.save(function(err){
             if (err) {
-              return res.status(422).send({'mongoose': 'handle mogoose errors in save', err});
+              return res.status(422).send({errors: mongooseHelpers.normailiseErrors(err.errors)});
             }
            return res.json({'registered': true})
         });
