@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const config = require('../config/dev')
+const jwt = require('jsonwebtoken');
 const mongooseHelpers = require('../helpers/mongoose')
 const userController = require('../controllers/user.controller')
 const User = require('../models/user')
@@ -25,9 +27,15 @@ router.post('/auth', async function(req,res){
             return res.status(422).send({errors:[{title:'Login Error', detail: 'Email is not registrd'}]});
         }
 
-        if(user.isSamePassword(password)){
+        if(user.hasSamePassword(password)){
+            //uses jwt to generate a token to be passed to the client if password is correct. 
+            const token = jwt.sign({
+                userId: user.id,
+                userName: user.userName
+              }, config.SECRET, { expiresIn: '1h' });
 
-            //impelment JWT toekn
+            //returns the token in JSon formt to be passed to front end.
+           return res.json(token);
         }
         else {
             return res.status(422).send({errors:[{title:'Login Error', detail: 'Wrong emial or password provided'}]});
@@ -83,5 +91,36 @@ router.post('/register', function(req,res){
         });
     })
 });
+
+router.authMiddleWare = async function(req,res, next) {
+    const token = req.headers.authorization;
+
+    if(token) {
+        const user = this.parseToken(token);
+        try {
+
+         const user = await User.findById(user.userId)
+
+            if(user) {
+                res.locals.user = user
+                //next forwards the request to the next middleware or route handler. Needs to be called when using middleware.
+                next()
+            }
+        } catch(err) {
+            return res.status(422).send({errors: mongooseHelpers.normailiseErrors(err.errors)});
+        }
+
+    } 
+    else {
+        return res.status(422).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});
+    }
+
+}
+
+router.parseToken = function(token) {
+    //token.split splites the token at the first space and creates an aray with ['bearer', [token]]. bearer is standard and 
+    //will form part of the autherization content always.
+    return jwt.verify( token.split(" ")[1] ,config.SECRET )
+}
 
 module.exports = router;
