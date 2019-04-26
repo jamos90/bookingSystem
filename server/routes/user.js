@@ -107,12 +107,12 @@ router.authMiddleWare = async function(req,res, next) {
                 next();
             }
             else {
-                return res.status(422).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});
+                router.notAutherised(res);
             }
         })
     }
     else {
-        return res.status(422).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});
+        router.notAutherised(res);
     }
 
 }
@@ -121,6 +121,10 @@ router.parseToken = function(token) {
     //token.split splites the token at the first space and creates an aray with ['bearer', [token]]. bearer is standard and 
     //will form part of the autherization content always.
     return jwt.verify( token.split(" ")[1] ,config.SECRET )
+}
+
+router.notAutherised = function(res) {
+    return res.status(401).send({errors:[{title: 'Not autherised',  detail: 'You need to login in to get access'}]});  
 }
 
 module.exports = router;
