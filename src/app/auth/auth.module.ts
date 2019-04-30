@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule }  from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +24,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     BrowserModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: []
