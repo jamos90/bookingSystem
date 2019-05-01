@@ -35,6 +35,10 @@ export class AuthService {
       return moment().isBefore(this.getExperationTime());
     }
 
+    public getUserName():string {
+        return this.decodedToken.userName;
+    }
+
     private saveToken(token: string):string {
         this.decodedToken = jwt.decode(token);
         localStorage.setItem('bwm_auth', token);

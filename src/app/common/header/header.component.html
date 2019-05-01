@@ -17,9 +17,11 @@
             <a class="nav-link" href="/register">Register</a>
           </li>
         </ng-container>
+       
+            <span class="nav-link" *ngIf="authService.isAuthenticated()">{{authService.getUserName()}}</span>
         <li class="nav-item" *ngIf="authService.isAuthenticated()" >
-            <a class="nav-link" (click)="logout()">Logout</a>
-          </li>
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
       </ul>
     </div>
 </nav>
