@@ -9,6 +9,7 @@ import { MapModule } from '../common/map/map.module';
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { RentalListItemComponent } from './rental-list-item/rental-list-item.component';
 import { RentalComponent } from './rental.component';
+import { AuthGuard } from '../auth/shared/auth.guard';
 
 import { RentalService } from './shared/rental.service';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
     component:RentalComponent,
     children: [
         {path: '', component: RentalListComponent},
-        {path: ':rentalId', component: RentalDetailComponent}
+        {path: ':rentalId', component: RentalDetailComponent, canActivate: [AuthGuard]}
     ]
     },
   

@@ -6,7 +6,9 @@ import {Routes, RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+
 import { AuthService } from './shared/auth.service';
+import { AuthGuard } from './shared/auth.guard';
 
 
 const routes: Routes = [
@@ -27,7 +29,7 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: []
 })
 export class AuthModule { }
