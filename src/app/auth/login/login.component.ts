@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errors: any[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -44,8 +45,8 @@ export class LoginComponent implements OnInit {
       (token)=>{
       this.router.navigate(['/rentals'])
     },
-    (errors)=> {
-      console.error('Im the error',errors.error);
+    (errorResponse)=> {
+      this.errors = errorResponse.error.errors;
     })
   }
 }
