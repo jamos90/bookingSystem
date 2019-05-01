@@ -3,6 +3,9 @@
       <div class="row">
         <div class="col-md-5">
           <h1>Login</h1>
+          <div *ngIf="notifyMessage" class="alert alert-success">
+            {{notifyMessage}}
+          </div>
           <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
               <label for="email">Email</label>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -14,13 +14,20 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   errors: any[] = [];
+  notifyMessage: string = "";
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router ) { }
+              private router: Router,
+              private activeatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {
     this.initForm();
+    this.activeatedRoute.params.subscribe((params) => {
+      if(params['registered']=== 'success'){
+        this.notifyMessage = 'You have been succesfully registered, you can login now';
+      }
+    })
   }
 
   initForm() {
