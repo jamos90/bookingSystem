@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as jwt from 'jsonwebtoken';
+import * as moment from 'moment';
 import 'rxjs/Rx';
+
+
+class DecodedToken {
+    exp: number = 0;
+    userName: string = ''
+}
 
 
 @Injectable()
 export class AuthService {
+    private decodedToken;
 
-    constructor( private http: HttpClient) {}
-
+    constructor( private http: HttpClient) {
+        //assigns a value to decoded token on component load. 
+        this.decodedToken = JSON.parse(localStorage.getItem('bwm_meta')) || new DecodedToken;
+    }
 
    public register(userData: any): Observable<any> {
-       console.log(userData);
     return this.http.post('/api/v1/users/register', userData);
     }
 
@@ -21,9 +31,18 @@ export class AuthService {
             (token: string)=> this.saveToken(token));
     }
 
-    private saveToken(token: string):string {
-        localStorage.setItem('bwm_auth', token);
-        return token;
+    public isAuthenticated():boolean {
+      return moment().isBefore(this.getExperationTime());
     }
 
+    private saveToken(token: string):string {
+        this.decodedToken = jwt.decode(token);
+        localStorage.setItem('bwm_auth', token);
+        localStorage.setItem('bwm_meta', JSON.stringify(this.decodedToken));
+        return token;
+    }
+    
+    private getExperationTime() {
+       return moment.unix(this.decodedToken.exp);
+    }
 }
