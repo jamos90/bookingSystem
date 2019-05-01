@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { AuthService } from '../../auth/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: "bwm-header",
@@ -8,6 +9,11 @@ import { AuthService } from '../../auth/shared/auth.service';
 })
 export class HeaderComponent {
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService,
+                 private router: Router ) {}
 
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+    }
 }

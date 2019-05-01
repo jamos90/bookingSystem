@@ -9,12 +9,17 @@
     </form>
     <div id="navbarNav">
       <ul class="navbar-nav">
-        <li *ngIf="!authService.isAuthenticated()" class="nav-item active">
-          <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
-        </li>
-        <li *ngIf="!authService.isAuthenticated()" class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
+        <ng-container *ngIf="!authService.isAuthenticated()">
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </ng-container>
+        <li class="nav-item" *ngIf="authService.isAuthenticated()" >
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
       </ul>
     </div>
 </nav>

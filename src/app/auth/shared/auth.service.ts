@@ -41,7 +41,15 @@ export class AuthService {
         localStorage.setItem('bwm_meta', JSON.stringify(this.decodedToken));
         return token;
     }
-    
+
+    public logout() {
+        
+        localStorage.removeItem('bwm_auth');
+        localStorage.removeItem('bwm_meta');
+
+        this.decodedToken = new DecodedToken;
+    }
+
     private getExperationTime() {
        return moment.unix(this.decodedToken.exp);
     }
