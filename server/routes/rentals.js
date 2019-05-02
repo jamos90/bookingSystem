@@ -8,8 +8,14 @@ router.get('/secret', userRoutes.authMiddleWare, function(req,res){
 })
 
 router.get('', function(req,res){
-    rental.find({}, function(err,foundRentals){
-        res.json(foundRentals);
+    rental.find()
+    //select will send us specific information or restrict informations sent. -bookings removes the bookings from the data being sent.
+        .select('-bookings')
+        .exec(function(err, foundRentals){
+            if(err) {
+                return res.status(422).send({errors:[{title:'Rental Error!', detail: 'Could not find rental'}]})
+            } 
+            res.json(foundRentals)
     })
 })
 
@@ -18,11 +24,16 @@ router.get('/:id', function(req,res){
 
     const rentalId = req.params.id
 
-    rental.findById(rentalId, function(err, foundRental){
-        if(err) {
-            res.status(422).send({errors:[{title:'rentalError', detail: 'Could not find rental'}]});
-        }
-        res.json(foundRental);
+    rental.findById(rentalId)
+    //second argument in populate allows you to specifiy what to send, restricted properties are denoted with the  - sign. ie id will
+    // not be sent in the user example below.
+        .populate('user', 'userName -_id')
+        .populate('bookings', 'startAt endAt -_id')
+        .exec(function(err, roundRental){
+            if(err) {
+             return res.status(422).send({errors:[{title:'Rental Error!', detail: 'Could not find rental'}]})
+            }
+            return res.json(foundRental);
     })
 })
 
