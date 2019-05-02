@@ -7,6 +7,7 @@ const FakeDb = require('./fake-db');
 
 const rentalRoutes = require('./routes/rentals');
 const userRoutes = require('./routes/user');
+const bookingRoutes = require('./routes/booking')
 
 // mongodb+srv://jamosamos90:M3lb0urne15!@cluster0-rxeiw.mongodb.net/test?retryWrites=true
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/api/v1/rentals', rentalRoutes );
 app.use('/api/v1/users', userRoutes );
+app.use('/api/v1/bookings', bookingRoutes);
 
 const PORT = process.env.PORT || 3001
 
