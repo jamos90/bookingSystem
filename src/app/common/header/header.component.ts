@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-    constructor(private authService: AuthService,
+    constructor( public authService: AuthService,
                  private router: Router ) {}
 
     logout() {
