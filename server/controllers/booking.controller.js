@@ -1,5 +1,6 @@
 const Booking = require('../models/booking');
 const Rental = require('../models/rental');
+const User = require('../models/user');
 const { normalizeErrors } = require('../helpers/mongoose');
 const moment = require('moment');
 
@@ -26,18 +27,28 @@ exports.createBooking = function(req, res){
 
             //Check here for vaild booking.
             if(exports.isValidBooking(booking, foundRental)){
+                booking.user = user;
+                booking.rental = foundRental
                 foundRental.bookings.push(booking);
                 foundRental.save();
-                booking.save();
-                return res.json({created: true});
-                //update user and rental
+                booking.save(function(err){
+                    if(err) {
+                        return res.status(422).send({errors:normalizeErrors(err.errors)});              
+                    }
+                    
+                    User.update({_id: user.id}, {$push: {bookings: booking}}, function(err){
+                        if(err) {
+                            return res.status(422).send({errors: normalizeErrors(err.errors)});
+                        }
+                    })
+                });
+
+                return res.json({startAt: booking.startAt, endAt: booking.endAt});
             }
             else {
                 return res.status(422).send({errors:{title: 'Invalid User', detail: "Chosen dates already taken"}});
             }
-
-            return res.json({booking, foundRental});
-        }))
+        }));
 }
 
 exports.isValidBooking = function(proposedBooking, rental) {
