@@ -25,16 +25,18 @@ exports.createBooking = function(req, res){
             }
 
             //Check here for vaild booking.
-            if(isValidBooking(booking, foundRental)){
-                return res.json({booking, foundRental});
+            if(exports.isValidBooking(booking, foundRental)){
+                foundRental.bookings.push(booking);
+                foundRental.save();
+                booking.save();
+                return res.json({created: true});
+                //update user and rental
             }
             else {
                 return res.status(422).send({errors:{title: 'Invalid User', detail: "Chosen dates already taken"}});
             }
 
             return res.json({booking, foundRental});
-
-
         }))
 }
 
