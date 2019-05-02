@@ -1,6 +1,7 @@
 const Booking = require('../models/booking');
 const Rental = require('../models/rental');
 const { normalizeErrors } = require('../helpers/mongoose');
+const moment = require('moment');
 
 
 
@@ -24,10 +25,34 @@ exports.createBooking = function(req, res){
             }
 
             //Check here for vaild booking.
+            if(isValidBooking(booking, foundRental)){
+                return res.json({booking, foundRental});
+            }
+            else {
+                return res.status(422).send({errors:{title: 'Invalid User', detail: "Chosen dates already taken"}});
+            }
 
             return res.json({booking, foundRental});
 
 
         }))
+}
 
+exports.isValidBooking = function(proposedBooking, rental) {
+    let isVaild = true;
+
+    //needs to be improved. Ineffiecnt to compare all bookings at once, improve later! 
+    if(rental.bookings && rental.bookings.length > 0) {
+        isVaild = rental.bookings.every(function(booking){
+            const proposedStart = moment(proposedBooking.startAt);
+            const proposedEnd = moment(proposedBooking.endAt);
+
+            const actualStart = moment(booking.startAt);
+            const actualEnd = moment(booking .endAt);
+        
+            return((actualStart < proposedStart && actualEnd < proposedEnd) || (proposedEnd < actualEnd && proposedEnd < actualStart));
+        })
+    }
+
+    return isVaild;
 }
