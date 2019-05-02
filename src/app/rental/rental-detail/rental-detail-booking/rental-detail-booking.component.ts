@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Rental } from '../../shared/rental.model';
+
 
 
 @Component({
@@ -9,21 +9,24 @@ import { Rental } from '../../shared/rental.model';
 })
 export class RentalDetailBookingComponent implements OnInit {
 
-  @Input() rental: Rental
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  public daterange: any = {};
+  @Input() rentalPrice: number
 
     // see original project for full list of options
     // can also be setup using the config service to apply to multiple pickers
     public options: any = {
-        locale: { format: 'YYYY-MM-DD' },
-        alwaysShowCalendars: false,
-        opens: 'left'
+      locale: { format: 'YYYY-MM-DD' },
+      alwaysShowCalendars: false,
+      opens: 'left'
     };
+
+  constructor() { }
+
+  public daterange: any = {};
+
+  ngOnInit() {
+  }
+
+
 
     public selectedDate(value: any, datepicker?: any) {
         // this is the date the iser selected
