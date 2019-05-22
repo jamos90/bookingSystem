@@ -29,7 +29,7 @@ router.get('/:id', function(req,res){
     // not be sent in the user example below.
         .populate('user', 'userName -_id')
         .populate('bookings', 'startAt endAt -_id')
-        .exec(function(err, roundRental){
+        .exec(function(err, foundRental){
             if(err) {
              return res.status(422).send({errors:[{title:'Rental Error!', detail: 'Could not find rental'}]})
             }
