@@ -3,7 +3,7 @@ const router = express.Router();
 const Rental = require('../models/rental');
 const User = require('../models/user');
 const userRoutes = require('./user');
-const { normalizeErrors } = require('../helpers/mongoose');
+const { normailiseErrors } = require('../helpers/mongoose');
 
 router.get('/secret', userRoutes.authMiddleWare, function(req,res){
     res.json({'secret':true})
@@ -18,7 +18,7 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
 
     Rental.create(rental, function(err, newRental){
         if(err) {
-            return res.status(422).send({errors:normalizeErrors(err.errors)});
+            return res.status(422).send({errors: normailiseErrors(err.errors)});
         }
 
         User.update({_id: user.id}, {$push: {rentals: newRental} })
@@ -54,7 +54,7 @@ router.get('', function(req,res){
         .select('-bookings')
         .exec(function(err, filtredRentals){
             if(err) {
-                return res.status(422).send({errors:normalizeErrors(err.errors)}); 
+                return res.status(422).send({errors:normailiseErrors(err.errors)}); 
             }
             if(filtredRentals.length === 0) {
                 return res.status(422).send({errors:[{title:'No rentals found', detail: `No rentals found for ${city}`}]})

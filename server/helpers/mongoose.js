@@ -3,7 +3,7 @@ module.exports = {
         let normailiseErrors = [];
         for(propery in errors ) {
             if(errors.hasOwnProperty(propery)){
-                normailiseErrors.push({title: propery,detail: errors[propery].message})
+                normailiseErrors.push({title: propery, detail: errors[propery].message})
             }
         }
 
