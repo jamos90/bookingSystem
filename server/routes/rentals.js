@@ -33,7 +33,7 @@ router.get('/:id', function(req,res){
 
     const rentalId = req.params.id
 
-    rental.findById(rentalId)
+    Rental.findById(rentalId)
     //second argument in populate allows you to specifiy what to send, restricted properties are denoted with the  - sign. ie id will
     // not be sent in the user example below.
         .populate('user', 'userName -_id')
@@ -50,7 +50,7 @@ router.get('', function(req,res){
     const city = req.query.city;
 
     if(city) {
-        rental.find({city})
+        Rental.find({city})
         .select('-bookings')
         .exec(function(err, filtredRentals){
             if(err) {
@@ -67,7 +67,7 @@ router.get('', function(req,res){
 
     }
     else {
-        rental.find()
+        Rental.find()
         //select will send us specific information or restrict informations sent. -bookings removes the bookings from the data being sent.
             .select('-bookings')
             .exec(function(err, foundRentals){
