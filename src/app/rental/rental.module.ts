@@ -29,7 +29,7 @@ const routes: Routes = [
     children: [
         {path: '', component: RentalListComponent},
         {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard]},
-        {path: ':rentalId', component: RentalDetailComponent, canActivate: [AuthGuard]},
+        {path: ':rentalId', component: RentalDetailComponent},
         {path: ':city/homes', component: RentalSearchComponent}
     ]
     },
