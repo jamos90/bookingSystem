@@ -6,6 +6,7 @@ import { BookingService } from '../../../booking/shared/booking.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DaterangePickerComponent } from 'ng2-daterangepicker';
+import { AuthService } from '../../../auth/shared/auth.service';
 import * as moment from 'moment'
 
 
@@ -38,7 +39,8 @@ export class RentalDetailBookingComponent implements OnInit {
     private modalService: NgbModal,
     private bookingService: BookingService,
     private toastr: ToastsManager,
-    private vcr: ViewContainerRef
+    private vcr: ViewContainerRef,
+    public authService: AuthService
     ) {
       this.toastr.setRootViewContainerRef(vcr);
      }
@@ -86,9 +88,9 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   private reestDatePicker() {
-    this.picker.datePicker.setStartDate(moment());
-    this.picker.datePicker.setEndDate(moment());
-    this.picker.datePicker.element.val('')
+    // this.picker.datePicker.setStartDate(moment());
+    // this.picker.datePicker.setEndDate(moment());
+    // this.picker.datePicker.element.val('')
   }
 
   public createBooking() {

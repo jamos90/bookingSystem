@@ -16,4 +16,13 @@ export class HeaderComponent {
         this.authService.logout();
         this.router.navigate(['/login']);
     }
+
+    search(city:string) {
+        // if(city) {
+        //     this.router.navigate([`/rentals/${city}/homes`])
+        // }
+        // else {}
+        // this.router.navigate(['/rentals'])
+        city ? this.router.navigate([`/rentals/${city}/homes`]) : this.router.navigate(['/rentals']);
+    }  
 }

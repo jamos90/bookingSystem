@@ -1,0 +1,15 @@
+<section id="rentalListing">
+  <h1 *ngIf="rentals.length > 0" class="page-title">You're home in {{city | lowercase | ucwords }}</h1>
+  <h1 *ngIf="errors.length > 0" class="page-title">You searched for {{city}}</h1>
+   <p *ngFor= "let error of errors">
+     {{error.detail}}
+   </p>
+  <div class="row">
+    <div class='col-md-3 col-xs-6' *ngFor = "let rental of rentals">
+      <!-- Square brakcets allows the passing of data into the component. [rental] matches the variable name created in the rental list item
+      component and 'rental' is the data to be passed through -->
+      <bwm-rental-list-item [currentRental]="rental"></bwm-rental-list-item>
+      
+    </div>
+  </div>
+</section>

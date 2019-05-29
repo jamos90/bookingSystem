@@ -3,7 +3,7 @@ const router = express.Router();
 const Rental = require('../models/rental');
 const User = require('../models/user');
 const userRoutes = require('./user');
-const { normalizeErrors } = require('../helpers/mongoose');
+const { normailiseErrors } = require('../helpers/mongoose');
 
 router.get('/secret', userRoutes.authMiddleWare, function(req,res){
     res.json({'secret':true})
@@ -18,7 +18,7 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
 
     Rental.create(rental, function(err, newRental){
         if(err) {
-            return res.status(422).send({errors:normalizeErrors(err.errors)});
+            return res.status(422).send({errors: normailiseErrors(err.errors)});
         }
 
         User.update({_id: user.id}, {$push: {rentals: newRental} })
@@ -33,7 +33,7 @@ router.get('/:id', function(req,res){
 
     const rentalId = req.params.id
 
-    rental.findById(rentalId)
+    Rental.findById(rentalId)
     //second argument in populate allows you to specifiy what to send, restricted properties are denoted with the  - sign. ie id will
     // not be sent in the user example below.
         .populate('user', 'userName -_id')
@@ -50,11 +50,11 @@ router.get('', function(req,res){
     const city = req.query.city;
 
     if(city) {
-        rental.find({city})
+        Rental.find({city})
         .select('-bookings')
         .exec(function(err, filtredRentals){
             if(err) {
-                return res.status(422).send({errors:normalizeErrors(err.errors)}); 
+                return res.status(422).send({errors:normailiseErrors(err.errors)}); 
             }
             if(filtredRentals.length === 0) {
                 return res.status(422).send({errors:[{title:'No rentals found', detail: `No rentals found for ${city}`}]})
@@ -67,7 +67,7 @@ router.get('', function(req,res){
 
     }
     else {
-        rental.find()
+        Rental.find()
         //select will send us specific information or restrict informations sent. -bookings removes the bookings from the data being sent.
             .select('-bookings')
             .exec(function(err, foundRentals){

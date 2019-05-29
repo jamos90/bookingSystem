@@ -3,10 +3,15 @@
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <form class="form-inline">
-        <input class="form-control mr-sm-2 bwm-search " type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 btn-bm" type="submit">Search</button>
-    </form>
+    <div class="form-inline">
+        <input #citySearch
+        (keyup.enter)="search(citySearch.value)"
+        class="form-control mr-sm-2 bwm-search " 
+        type="search" 
+        placeholder="Search" 
+        aria-label="Search">
+        <button (click)=search(citySearch.value) class="btn btn-outline-success my-2 my-sm-0 btn-bm" type="button">Search</button>
+    </div>
     <div id="navbarNav">
       <ul class="navbar-nav">
         <ng-container *ngIf="!authService.isAuthenticated()">
@@ -19,6 +24,15 @@
         </ng-container>
         <ng-container *ngIf="authService.isAuthenticated()">
           <span class="nav-link">{{authService.getUserName()}}</span>
+          <div class="nav-item dropdown clickable">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Owner Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink= "/rentals/new"> Create Rental</a>
+            </div>
+           </div>       
+          <!-- https://api.adorable.io/avatars/285/abott@adorable.png -->
           <li class="nav-item">
             <a class="nav-link" (click)="logout()">Logout</a>
           </li>
