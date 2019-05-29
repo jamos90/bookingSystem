@@ -1,5 +1,5 @@
 <section id="rentalListing">
-  <h1 *ngIf="rentals.length > 0" class="page-title">You're home in {{city | ucwords }}</h1>
+  <h1 *ngIf="rentals.length > 0" class="page-title">You're home in {{city | lowercase | ucwords }}</h1>
   <h1 *ngIf="errors.length > 0" class="page-title">You searched for {{city}}</h1>
    <p *ngFor= "let error of errors">
      {{error.detail}}
