@@ -24,6 +24,15 @@
         </ng-container>
         <ng-container *ngIf="authService.isAuthenticated()">
           <span class="nav-link">{{authService.getUserName()}}</span>
+          <div class="nav-item dropdown clickable">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Owner Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink= "/rentals/new"> Create Rental</a>
+            </div>
+           </div>       
+          <!-- https://api.adorable.io/avatars/285/abott@adorable.png -->
           <li class="nav-item">
             <a class="nav-link" (click)="logout()">Logout</a>
           </li>
