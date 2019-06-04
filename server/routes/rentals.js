@@ -9,6 +9,8 @@ router.get('/secret', userRoutes.authMiddleWare, function(req,res){
     res.json({'secret':true})
 })
 
+
+
 router.post('', userRoutes.authMiddleWare, function(req, res) {
     const { title, city, street, category, image, shared, bedrooms, description, dailyRate} = req.body
 
@@ -26,6 +28,18 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
     })
 });
 
+router.get('/manage', userRoutes.authMiddleWare,function(req,res){
+    const user = res.locals.user;
+
+    Rental.where({user: user})
+        .populate('bookings')
+        .exec(function(err, foundRentals){
+            if(err) {
+                return res.status(422).send({errors:normailiseErrors(err.errors)});   
+            }
+            return res.json(foundRentals);             
+        })
+});
 
 
 //path and params.id have to match, if the path is '/:id' the rentalId has to be req.params.id
@@ -45,6 +59,41 @@ router.get('/:id', function(req,res){
             return res.json(foundRental);
     })
 })
+
+
+router.delete('/:id', userRoutes.authMiddleWare, function(req,res){
+    const user = res.locals.user;
+    Rental.findById(req.params.id)
+        .populate('user', '_id')
+        .populate({
+            path: 'bookings',
+            select: 'startAt',
+            //$gt = greater than. Matches bookings that are in the future.
+            match: { startAt: { $gt: new Date()}}
+        }) 
+        .exec(function(err, foundRental) {
+            if(err) {
+                return res.status(422).send({errors:normailiseErrors(err.errors)});
+            }
+            
+            if(user.id !== foundRental.user.id) {
+                return res.status(422).send({errors:[{title:'Invalid User', detail: 'You cannot delete a rental you do not own'}]})
+            }
+
+            if(foundRental.bookings.length > 0) {
+                return res.status(422).send({errors:[{title:'Active bookings present', detail: 'You cannot delete a rental with active bookings'}]})
+            }
+
+            foundRental.remove(function(err){
+                if(err) {
+                    return res.status(422).send({errors: normailiseErrors(err.errors)});
+                }
+                return res.json({'status': `${foundRental.title} has been deleted succesfully`})
+            })
+        })
+});
+
+
 
 router.get('', function(req,res){
     const city = req.query.city;
