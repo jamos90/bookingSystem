@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageRentalComponent } from './manage-rental/manage-rental.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { ManageComponent } from './manage.component';
+import { AuthGuard } from '../auth/shared/auth.guard';
 
 
 const routes: Routes = [
@@ -11,11 +13,13 @@ const routes: Routes = [
     children: [
         {
         path:'rentals',
-        component: ManageRentalComponent
+        component: ManageRentalComponent,
+        canActivate: [AuthGuard]
         },
         {
         path:'bookings',
-        component: ManageBookingComponent
+        component: ManageBookingComponent,
+        canActivate: [AuthGuard]
         }
     ]
     },
@@ -30,9 +34,13 @@ const routes: Routes = [
 
     ],
     imports: [
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        CommonModule
 
     ],
+    providers: [
+
+    ]
 })
 
 export class ManageModule{}
