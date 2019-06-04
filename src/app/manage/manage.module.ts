@@ -23,6 +23,8 @@ const routes: Routes = [
 
 @NgModule({
     declarations:[
+        
+        ManageComponent,
         ManageRentalComponent,
         ManageBookingComponent
 

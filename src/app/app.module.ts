@@ -11,10 +11,8 @@ import { HeaderComponent} from './common/header/header.component';
 import { RentalComponent } from './rental/rental.component';
 
 import { RentalModule } from './rental/rental.module';
+import { ManageModule } from './manage/manage.module';
 import { AuthModule } from './auth/auth.module';
-import { ManageComponent } from './app/manage/manage.component';
-import { ManageRentalComponent } from './app/manage/manage-rental/manage-rental.component';
-import { ManageBookingComponent } from './manage/manage-booking/manage-booking.component';
 
 
 const routes: Routes = [
@@ -26,14 +24,12 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    ManageComponent,
-    ManageRentalComponent,
-    ManageBookingComponent 
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     RentalModule,
+    ManageModule,
     AuthModule,
     NgbModule.forRoot(),
     ToastModule.forRoot(),
