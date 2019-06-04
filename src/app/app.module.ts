@@ -12,6 +12,7 @@ import { RentalComponent } from './rental/rental.component';
 
 import { RentalModule } from './rental/rental.module';
 import { AuthModule } from './auth/auth.module';
+import { ManageComponent } from './app/manage/manage.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent 
+    HeaderComponent,
+    ManageComponent 
   ],
   imports: [
     RouterModule.forRoot(routes),
