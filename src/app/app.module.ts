@@ -13,6 +13,8 @@ import { RentalComponent } from './rental/rental.component';
 import { RentalModule } from './rental/rental.module';
 import { AuthModule } from './auth/auth.module';
 import { ManageComponent } from './app/manage/manage.component';
+import { ManageRentalComponent } from './app/manage/manage-rental/manage-rental.component';
+import { ManageBookingComponent } from './manage/manage-booking/manage-booking.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    ManageComponent 
+    ManageComponent,
+    ManageRentalComponent,
+    ManageBookingComponent 
   ],
   imports: [
     RouterModule.forRoot(routes),
