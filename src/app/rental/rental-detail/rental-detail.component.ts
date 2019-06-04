@@ -33,7 +33,18 @@ export class RentalDetailComponent implements OnInit {
         console.log(this.rental);
 
     })
+  }
 
+  deleteRental(rentalId:string){
+      this.rentalService.deleteRental(rentalId).subscribe(
+        (data)=>{
+          console.log(data);
+        },
+        ()=> {
+
+
+        }
+      )
   }
 
  

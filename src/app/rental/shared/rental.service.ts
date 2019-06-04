@@ -29,5 +29,9 @@ export class RentalService {
     return this.http.post('/api/v1/rentals', rental);
   }
 
+  public deleteRental(rentalId:string):Observable<any>{
+    return this.http.delete(`/api/v1/rentals/${rentalId}`);
+  }
+
 
 }
