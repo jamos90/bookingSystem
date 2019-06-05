@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RentalService } from '../shared/rental.service';
 import { Rental } from '../shared/rental.model';
+import { createPipeInstance } from '@angular/core/src/view/provider';
 
 @Component({
   selector: 'bwm-rental-list',
@@ -20,12 +21,9 @@ export class RentalListComponent implements OnInit {
       this.rentals = data;
     },
     (error)=>{
+      console.error(`something has gone wrong: ${error}`);
 
-    },
-    ()=>{
-
-    }
-  )
+    });
   }
 
 }
