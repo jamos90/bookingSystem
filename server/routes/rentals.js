@@ -16,7 +16,7 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
 
     const user = res.locals.user;
 
-    const rental = new Rental({title, city, street, category, image, shared, bedrooms, description, dailyRate})
+    const rental = new Rental({title, city, street, category, image, shared, bedrooms, description, dailyRate, user})
 
     Rental.create(rental, function(err, newRental){
         if(err) {
@@ -30,6 +30,8 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
 
 router.get('/manage', userRoutes.authMiddleWare,function(req,res){
     const user = res.locals.user;
+
+    console.log(user);
 
     Rental.where({user: user})
         .populate('bookings')
