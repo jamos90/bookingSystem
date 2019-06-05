@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgPipesModule } from 'ngx-pipes';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageRentalComponent } from './manage-rental/manage-rental.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { ManageComponent } from './manage.component';
 import { AuthGuard } from '../auth/shared/auth.guard';
+import { ManageRentalBookingComponent } from './manage-rental/manage-rental-booking/manage-rental-booking.component';
 
 
 const routes: Routes = [
@@ -30,12 +32,14 @@ const routes: Routes = [
         
         ManageComponent,
         ManageRentalComponent,
-        ManageBookingComponent
+        ManageBookingComponent,
+        ManageRentalBookingComponent
 
     ],
     imports: [
         RouterModule.forChild(routes),
-        CommonModule
+        CommonModule,
+        NgPipesModule
 
     ],
     providers: [

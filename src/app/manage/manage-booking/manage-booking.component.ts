@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Booking } from '../../booking/shared/booking.model';
+import { BookingService } from '../../booking/shared/booking.service';
 
 @Component({
   selector: 'bwm-manage-booking',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageBookingComponent implements OnInit {
 
-  constructor() { }
+  bookings: Booking[];
+
+  constructor(private bookingService: BookingService) { }
 
   ngOnInit() {
+    const userBookings = this.bookingService.getUserBookings();
+    userBookings.subscribe(
+      (data: Booking[])=>{
+        this.bookings = data;
+        console.log("im the bookings" ,this.bookings);
+    },
+    (err)=>{
+      console.error(`something has gone wrong ${err}`);
+    });
+
   }
 
 }
