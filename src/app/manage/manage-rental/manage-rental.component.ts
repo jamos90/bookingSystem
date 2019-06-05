@@ -10,7 +10,7 @@ import { Rental } from '../../rental/shared/rental.model';
 })
 export class ManageRentalComponent implements OnInit {
   
-  rentals: Rental[] = [];
+  rentals: Rental[];
 
   constructor( private rentalService:RentalService) { }
 
@@ -22,11 +22,9 @@ export class ManageRentalComponent implements OnInit {
         this.rentals = data;
         console.log('this is the rentals', this.rentals);
     }),
-    ()=>{
+    (error)=>{
+      console.error(`something has gone wrong ${error}`);
 
     }    
   }
-
-
-
 }
