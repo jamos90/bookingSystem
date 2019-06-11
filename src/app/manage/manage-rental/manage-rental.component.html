@@ -3,7 +3,7 @@
     <h1 class="page-title">My Rentals</h1>
     <div class="row">
       <ng-container *ngIf="rentals && rentals.length > 0">
-        <div class="col-md-4" *ngFor="let rental of rentals">
+        <div class="col-md-4" *ngFor="let rental of rentals; let i = index">
           <div class="card text-center">
             <div class="card-block">
               <h4 class="card-title">{{rental.title}} - {{rental.city | ucwords}}</h4>
@@ -13,8 +13,13 @@
               </span>
             </div>
             <div class="card-footer text-muted">
-               <p>Created at {{rental.careatedAt | date}}</p> 
-               <button type="button" (click)="deleteRental()" class="btn btn-bwm btn-delete">Delete</button> 
+              <p>Created at {{rental.careatedAt | date}}</p> 
+              <button type="button" (click)="rentalDeleteIndex = i" *ngIf="rentalDeleteIndex !== i" class="btn btn-bwm btn-delete">Delete</button> 
+              <div *ngIf="rentalDeleteIndex === i">
+                <span class="confirm-message"> Do you confirm delete? </span> 
+                <button class="btn btn-success" (click)="deleteRental(rental._id)">Yes</button>
+                <button (click)="rentalDeleteIndex = undefined" class="btn btn-danger">No</button>
+              </div>
             </div>
           </div>
         </div>
