@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const config = require('./config/index');
+const config = require('./config');
 const rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 const path = require('path');
@@ -31,11 +31,12 @@ app.use('/api/v1/users', userRoutes );
 app.use('/api/v1/bookings', bookingRoutes);
 
 if(process.env.NODE_ENV === 'production') {
-    const appPath = path.join(__dirname, '..' , 'dist');
+    const appPath = path.join(__dirname, '..','dist');
     app.use(express.static(appPath));
     app.get('*', function(req,res){
-    res.sendFile(path.resolve(appPath, 'index.html'));
-})
+        res.sendFile('../dist/index.html');
+        // res.sendFile(path.resolve(appPath, 'index.html'));
+    })
 }
 
 
