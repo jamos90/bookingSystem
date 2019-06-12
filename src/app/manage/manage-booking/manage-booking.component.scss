@@ -1,0 +1,57 @@
+@import 'variables';
+
+#userBookings {
+
+  .page-title {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+  }
+    .card {
+      margin-bottom: 20px;
+    }
+
+    .row {
+      padding: 20px;
+    }
+  
+    h1 {
+      margin-bottom: 20px;
+    }
+  
+    .card-block {
+      padding: 20px;
+    }
+  
+    .card-header {
+      text-transform: capitalize;
+    }
+  
+    .card-title {
+      font-size: 18px;
+    }
+  
+    .booking {
+      &-desc {
+        font-size: 14px;
+        color: $secondary-text-color;
+      }
+  
+      &-days {
+        font-size: 14px;
+        font-weight: bold;
+      }
+  
+      &-price-value {
+        font-weight: 700;
+      }
+    }
+  
+    .btn-bwm {
+      color: white;
+      font-size: 14px;
+      padding: 15px;
+      background-color: $secondary-text-color;
+      border-radius: 5px;
+    }
+  }

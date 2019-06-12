@@ -26,13 +26,18 @@ export class AuthService {
     }
 
     public login(userData: any): Observable<any> {
+        // this.isUserAdmin(userData.userAdmin);
         return this.http.post('/api/v1/users/auth', userData).map(
             //implicet retrun to return the token to the login function in front end.
             (token: string)=> this.saveToken(token));
     }
 
+    public isUserAdmin() {
+        return localStorage.getItem('bwm_meta_admin') === "true" ? true : false;  
+    }
+
     public isAuthenticated():boolean {
-      return moment().isBefore(this.getExperationTime());
+        return moment().isBefore(this.getExperationTime());
     }
 
     public getAuthedToken(): string {
@@ -41,12 +46,14 @@ export class AuthService {
 
     public getUserName():string {
         return this.decodedToken.userName;
+        
     }
 
     private saveToken(token: string):string {
         this.decodedToken = jwt.decode(token);
         localStorage.setItem('bwm_auth', token);
         localStorage.setItem('bwm_meta', JSON.stringify(this.decodedToken));
+        localStorage.setItem('bwm_meta_admin', JSON.stringify(this.decodedToken.userAdmin));
         return token;
     }
 

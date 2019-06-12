@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 
+html {
+  height: 100%; 
+}
+
+body {
+  min-height: 100%;
+}
 .apartment {
     color: #a72da3;
 }
@@ -22,7 +29,9 @@
 }
 
 .bwm-form {
-  color: $main-text-color;
+  padding-top: 20px;
+  color: $black-text-color;
+  padding-left: 20px;
 
   form {
     margin-bottom: 10px;
@@ -65,4 +74,11 @@
     margin-top: 50px;
     letter-spacing: 1px;
   }
+}
+
+.modal-topper {
+  height: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: $secondary-text-color
 }

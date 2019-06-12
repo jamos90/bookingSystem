@@ -33,5 +33,9 @@ export class RentalService {
     return this.http.delete(`/api/v1/rentals/${rentalId}`);
   }
 
+  public getUserRentals():Observable<any>{
+    return this.http.get('api/v1/rentals/manage');
+  }
+
 
 }

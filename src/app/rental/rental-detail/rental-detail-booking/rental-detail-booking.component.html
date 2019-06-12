@@ -27,29 +27,37 @@
   </div>
   
   <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Confirm Booking<p>{{newBooking.startAt}} - {{newBooking.endAt}}</p> </h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <em>{{newBooking.days}} nights</em>
-      <span><em>{{rental.dailyRate}}</em> perNight</span>  
-      <p>Guests:<em>{{newBooking.guests}}</em></p>
-      <p>Price: <em>{{newBooking.totalPrice}}</em></p>
+    <div class="booking-modal-container">
+      <div class="modal-topper"></div>
+        <i (click)="closeModal()"class="fa fa-times"></i>
+      <div class="booking-modal-header">
+        <h6 class="modal-title">Confirm Booking for the following dates:</h6>
+        <p>{{newBooking.startAt}} - {{newBooking.endAt}}</p>
+      </div>
 
-      <p>Do you confirm booking for the above informaiton?</p>
-    </div>
-    <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
-      <p *ngFor="let error of errors">
-        {{error.detail}}
-      </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-bwm" (click)="createBooking()">Confirm</button>
-      <button type="button" class="btn btn-bwm" (click)="modal.close('Close click')">Close</button>
+      <hr>
+
+      <div class="booking-modal-body">
+        <p class="booking-details-item-title"> Nights:<span>{{newBooking.days}}</span></p>
+        <p class="booking-details-item-title"> Rate:<span>${{rental.dailyRate}}</span></p>
+        <p class="booking-details-item-title">Guests:<span>{{newBooking.guests}}</span></p>
+        <p class="booking-details-item-title">Price:<span>${{newBooking.totalPrice}}</span></p>
+      </div>
       
+      <hr>
+
+      <div class="booking-modal-footer">
+
+      <p class="booking-details-item-title">Do you confirm booking for the above informaiton?</p>
+    
+        <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
+          <p *ngFor="let error of errors">{{error.detail}}</p>
+        </div> 
+        <div class="booking-modal-buttons">
+          <button type="button" class="booking-confirm-button" (click)="createBooking()">Confirm</button>
+          <button type="button" class="booking-cancel-button" (click)="closeModal()">Close</button>
+        </div>
+      </div>       
     </div>
   </ng-template>
   
