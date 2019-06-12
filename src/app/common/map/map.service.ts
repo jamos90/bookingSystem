@@ -30,7 +30,7 @@ export class MapService {
     
  
     public getGeoLocation(location:string): Observable<any> {
-        console.log('im getting here');
+        
         this.geoCoder = new (<any>window).google.maps.Geocoder()
         return new Observable((oberver)=>{
             //checks is we already have a location cached so we don't have to make unncesary calls to the API.

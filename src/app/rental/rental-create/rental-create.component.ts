@@ -26,7 +26,7 @@ export class RentalCreateComponent implements OnInit {
   }
 
   createRental() {
-    console.log(this.newRental);
+    
     this.rentalService.createRental(this.newRental).subscribe(
       (rental:Rental)=>{
         this.router.navigate([`/rentals/${rental._id}`])
@@ -34,7 +34,7 @@ export class RentalCreateComponent implements OnInit {
       },
       (errorResponse:HttpErrorResponse)=>{
         this.errors = errorResponse.error.errors
-        console.log(this.errors);
+       
       }
     )
   }

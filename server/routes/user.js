@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config/dev')
+const config = require('../config')
 const jwt = require('jsonwebtoken');
 const mongooseHelpers = require('../helpers/mongoose')
 const userController = require('../controllers/user.controller')

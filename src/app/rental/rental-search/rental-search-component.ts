@@ -25,7 +25,6 @@ export class RentalSearchComponent implements OnInit {
     this.activatedRoute.params.subscribe((params)=>{
       this.city = params['city'];
       this.getRentals();
-      console.log(params);
     }) 
   }
 
@@ -37,7 +36,7 @@ export class RentalSearchComponent implements OnInit {
     this.rentalService.getRentalByCity(this.city).subscribe(
       (rentals:Rental[])=>{
         this.rentals = rentals;
-        console.log(rentals);
+        
 
       },
       (error: HttpErrorResponse)=>{
