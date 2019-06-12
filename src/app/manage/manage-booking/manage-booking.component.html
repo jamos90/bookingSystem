@@ -5,20 +5,20 @@
         <div class="col-md-4" *ngFor="let booking of bookings">
           <div class="card text-center">
             <div class="card-header">
-              {{booking.rental ? booking.rental.category : 'Deleted Rental'}}  
+              Type of property: {{booking.rental ? booking.rental.category : 'Deleted Rental'}}  
             </div>
             <div class="card-block">
               <ng-container *ngIf="booking.rental">
                 <h4 class="card-title">{{booking.rental.title}} - {{booking.rental.city | ucwords}} </h4> 
               </ng-container>
-              <p class="card-text booking-desc">{{booking.rental.description}}</p> 
-              <p class="card-text booking-days"> {{booking.startAt | date }} - {{booking.endAt | date}} | {{booking.days}}</p> 
+              <p class="card-text booking-desc"> {{booking.rental.description}}</p> 
+              <p class="card-text booking-days">  Dates: {{booking.startAt | date }} - {{booking.endAt | date}} | {{booking.days}} days </p> 
               <p class="card-text booking-price"><span>Price: </span> <span class="booking-price-value">$ {{booking.totalPrice}}</span></p> <!-- booking price -->
               <a class="btn btn-bwm" routerLink="/rentals/{{booking.rental._id}}" *ngIf="booking.rental">Go to Rental</a>
              
             </div>
             <div class="card-footer text-muted">
-              {{booking.createdAt | date }}
+              Booked on: {{booking.createdAt | date }}
             </div>
           </div>
         </div>
