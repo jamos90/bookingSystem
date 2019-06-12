@@ -21,7 +21,7 @@ const apiKey = key.key;
   imports: [
     
     AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyB4gqEo27fBsjKgCfFXErzHZaNFJMcRKmg'
+        apiKey: apiKey
       }),
       CommonModule
 
