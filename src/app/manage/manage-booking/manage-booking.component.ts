@@ -17,8 +17,7 @@ export class ManageBookingComponent implements OnInit {
     const userBookings = this.bookingService.getUserBookings();
     userBookings.subscribe(
       (data: Booking[])=>{
-        this.bookings = data;
-        console.log("im the bookings" ,this.bookings);
+        this.bookings = data;   
     },
     (err)=>{
       console.error(`something has gone wrong ${err}`);

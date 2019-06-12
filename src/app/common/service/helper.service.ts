@@ -7,7 +7,6 @@ export class HelperService {
 
 
     private getRangeOfDates(startAt, endAt, dateFormat) {
-        console.log('getting to helper funciton', startAt, endAt);
         const tempDates = [];
         const mEndAt = moment(endAt);
         let mStartAt = moment(startAt);

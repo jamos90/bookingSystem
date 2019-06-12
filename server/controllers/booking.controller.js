@@ -53,14 +53,14 @@ exports.createBooking = function(req, res){
 
 exports.getUserBookings = function(req,res) {
     const user = res.locals.user;
-    console.log(user);
+    
 
     Booking.where({user: user}).populate('rental').exec(function(err, foundBookings){
-        console.log(foundBookings);
+        
         if(err) {
             return res.status(422).send({errors:normailiseErrors(err.errors)});   
         }
-        console.log(foundBookings);
+        
         return res.json(foundBookings);             
     })
 }

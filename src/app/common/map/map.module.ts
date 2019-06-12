@@ -8,6 +8,7 @@ import { ApiKey }  from '../../config/dev';
 import { CommonModule } from '@angular/common';
 
 const key = new ApiKey;
+const apiKey = key.key;
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ const key = new ApiKey;
   imports: [
     
     AgmCoreModule.forRoot({
-        apiKey: key.key
+        apiKey: 'AIzaSyB4gqEo27fBsjKgCfFXErzHZaNFJMcRKmg'
       }),
       CommonModule
 

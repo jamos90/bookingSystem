@@ -53,7 +53,7 @@ export class RentalDetailBookingComponent implements OnInit {
   ngOnInit() {
     this.getBookedOutDates();
     this.newBooking = new Booking();
-    console.log(this.picker);
+    
   }
 
   private checkForInvalidDates(date) {
@@ -67,12 +67,12 @@ export class RentalDetailBookingComponent implements OnInit {
 
     if(bookings.length > 0 && bookings) {
       bookings.forEach((booking: Booking)=>{
-      console.log(booking);
+      
       const dateRange = this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt)
        //destructurising allows you to break down the date range array into its elemets and push those into the bookedout dates array. Otherwise 
        //bookedOutDates would be an array of arrays.
       this.bookedOutDates.push(...dateRange)
-        console.log( "im booked out dates", this.bookedOutDates);
+        
       })
     }
   }
@@ -98,21 +98,21 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   public createBooking() {
-    console.log('booking being created');
+    
     this.newBooking.rental = this.rental;
     this.bookingService.createBooking(this.newBooking).subscribe(
       (bookingData)=>{
         this.addNewBookedOutDates(bookingData);
-        console.log(bookingData);
+        
         this.reestDatePicker();
         this.newBooking = new Booking();
         this.modalRef.close();
         this.toastr.success('Booking has been sucessfuly created, check your booking detail in managing section', 'Success!');
       },
       (errorResponse: any)=>{
-        console.log(errorResponse);
+        
         this.errors.push(errorResponse.error.errors);
-        console.log(this.errors);
+        
       }
     );
   }
@@ -126,7 +126,6 @@ export class RentalDetailBookingComponent implements OnInit {
         this.newBooking.days = -(value.start.diff(value.end, 'days'));
         this.newBooking.totalPrice = this.newBooking.days * this.rental.dailyRate;
 
-        console.log(this.newBooking);
 
         // or manupulat your own internal property
         this.daterange.start = value.start;
