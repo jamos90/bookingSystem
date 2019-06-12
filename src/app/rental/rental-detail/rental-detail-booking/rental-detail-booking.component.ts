@@ -20,7 +20,7 @@ export class RentalDetailBookingComponent implements OnInit {
 
   @Input() rental: Rental
   @ViewChild(DaterangePickerComponent)
-  private picker = DaterangePickerComponent
+  private picker =  DaterangePickerComponent
  
   newBooking: Booking;
   modalRef:any
@@ -32,6 +32,7 @@ export class RentalDetailBookingComponent implements OnInit {
       alwaysShowCalendars: false,
       opens: 'left',
       autoUpdateInput: false,
+      
       isInvalidDate: this.checkForInvalidDates.bind(this)
     };
 
@@ -71,15 +72,18 @@ export class RentalDetailBookingComponent implements OnInit {
        //destructurising allows you to break down the date range array into its elemets and push those into the bookedout dates array. Otherwise 
        //bookedOutDates would be an array of arrays.
       this.bookedOutDates.push(...dateRange)
-        console.log(this.bookedOutDates);
+        console.log( "im booked out dates", this.bookedOutDates);
       })
     }
   }
   
   public openConfirmModal(content) {
-    console.log('reserving rental', this.newBooking);
     this.modalRef = this.modalService.open(content);
 
+  }
+
+  public closeModal() {
+    this.modalRef.close();
   }
 
   private addNewBookedOutDates(bookingData:any) {
@@ -88,9 +92,9 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   private reestDatePicker() {
-    // this.picker.datePicker.setStartDate(moment());
-    // this.picker.datePicker.setEndDate(moment());
-    // this.picker.datePicker.element.val('')
+      // this.picker.datePicker.setStartDate(moment());
+      // this.picker.datePicker.setEndDate(moment());
+      // this.picker.datePicker.element.val('');
   }
 
   public createBooking() {

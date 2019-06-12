@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .booking {
   padding: 20px;
@@ -41,4 +42,83 @@
     font-size: 13px;
     font-weight: 300;
   }
+}
+
+.booking-modal-container {
+  border-radius: 5px;
+
+
+  .fa {
+    position: absolute;
+    right: 20px;
+    font-weight: lighter;
+    color: $black-text-color
+
+  }
+
+  .booking-modal-header {
+    padding-top: 20px;
+    @include displayFlex();
+    @include flexDirection(column);
+    @include alignItems(center);
+    @include justifyContent(center);
+
+
+   
+  }
+
+  .booking-modal-body {
+    @include displayFlex();
+    @include flexDirection(column);
+    padding-left: 40px;
+
+    .booking-details-item-title {
+      width: 100px;
+      display: inline-block;
+
+      span {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .booking-modal-footer {
+    @include displayFlex();
+    @include flexDirection(column);
+    @include alignItems(center);
+    @include justifyContent(center);
+    margin-bottom: 10px;
+
+    .booking-modal-buttons {
+      @include displayFlex();
+      @include flexDirection(row);
+      @include alignItems(center);
+      @include justifyContent(center);
+
+      button:hover {
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .booking-confirm-button {
+        color: $button-text-color;
+        background-color: $confirm-button-main-color;
+        appearance: none;
+        -webkit-appearance: none;
+        margin-right: 20px;
+        border-radius: 5px;
+      }
+
+      .booking-cancel-button {
+        color: $button-text-color;
+        background-color: $decline-button-main-color;
+        appearance: none;
+        -webkit-appearance: none;
+        border-radius: 5px;
+      }
+    }
+
+  }
+
+  
 }
