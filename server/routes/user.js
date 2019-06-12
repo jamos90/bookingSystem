@@ -31,7 +31,8 @@ router.post('/auth', async function(req,res){
             //uses jwt to generate a token to be passed to the client if password is correct. 
             const token = jwt.sign({
                 userId: user.id,
-                userName: user.userName
+                userName: user.userName,
+                userAdmin: user.admin
               }, config.SECRET, { expiresIn: '1h' });
 
             //returns the token in JSon formt to be passed to front end.
