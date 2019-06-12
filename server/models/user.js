@@ -25,6 +25,9 @@ const userSchema = new Schema({
         min: [4, 'Too short minimum number of characters in 4'],
         required: 'Password is required'
     },
+    admin: {
+        type: Boolean
+    },
     rentals: [{
         type: Schema.Types.ObjectId, ref: 'Rental'
     }],
