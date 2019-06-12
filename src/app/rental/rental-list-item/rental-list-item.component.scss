@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 a {
     &:hover, &:focus {
@@ -6,33 +7,52 @@ a {
     }
 }
 
-.bwm-card {
-    border: none;
-    margin-bottom: 25px;
+.rental-list-items-details {
+  position: relative;
+  height: 717px;
+  width: 100%;
+  overflow: hidden;
 
+  @media screen and (max-width: $mobile-width) {
+    height: 565px;
+  }
+  
+   .rental-list-items-images {
+     width: 1000px;
+     height: 717px;
+     position: absolute;
 
-    .card-block {
+     @media screen and (max-width: $mobile-width) {
+        height: 565px;
+     }
+   }
+
+    .rental-detail-info {
       padding-top: 8px;
+      @include displayFlex();
+      @include flexDirection(column);
+      @include alignItems(center);
+      @include justifyContent(center);
+      margin-right: 20px;
+      margin-left: 20px;
+      position: relative;
+      top: 250px;
 
-
-      .card-subtitle {
-        margin: 0;
-        font-weight: 500;
-        font-size: 12px;
-        text-transform: uppercase;
-      }
-
-      .card-title {
+      .rental-list-tiems-title {
         font-size: 19px;
+        position: relative;
         margin: 3px 0;
-        color: $main-text-color
+        color: #F0E7D8;
       }
 
-      .card-text {
+      .rental-list-tiems-text {
         font-size: 14px;
-        font-weight: 300;
-        color: #7e7e7e;
+        position: relative;
+        font-weight: 500;
+        color: #F0E7D8;
         margin-bottom: 0;
+        width: 400px;
+        
       }
     }
 }
