@@ -11,6 +11,7 @@ import { createPipeInstance } from '@angular/core/src/view/provider';
 export class RentalListComponent implements OnInit {
 
   rentals: Rental[] = [];
+  errors: any[] = [];
 
   constructor(private rentalService: RentalService) { }
 
@@ -22,6 +23,8 @@ export class RentalListComponent implements OnInit {
     },
     (error)=>{
       console.error(`something has gone wrong: ${error}`);
+      this.errors = error.error.errors
+      console.error(this.errors);
 
     });
   }

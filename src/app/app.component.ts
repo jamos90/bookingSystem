@@ -11,6 +11,6 @@ export class AppComponent {
 
   //you do not need to define the clickHandler as a function just as below.
   clickHandler() {
-    console.log('hello world')
+    
   }
 }

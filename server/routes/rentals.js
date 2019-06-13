@@ -31,7 +31,7 @@ router.post('', userRoutes.authMiddleWare, function(req, res) {
 router.get('/manage', userRoutes.authMiddleWare,function(req,res){
     const user = res.locals.user;
 
-    console.log(user);
+  
 
     Rental.where({user: user})
         .populate('bookings')
@@ -111,7 +111,7 @@ router.get('', function(req,res){
                 return res.status(422).send({errors:[{title:'No rentals found', detail: `No rentals found for ${city}`}]})
             }
 
-            console.log(filtredRentals);
+           
 
             return res.json(filtredRentals);
         })

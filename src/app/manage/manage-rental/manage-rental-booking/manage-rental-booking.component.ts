@@ -16,7 +16,7 @@ export class ManageRentalBookingComponent implements OnInit {
   constructor(public modalService: NgbModal) { }
 
   ngOnInit() {
-    console.log(this.rentalBookings)
+   
   }
 
   

@@ -26,14 +26,14 @@ export class MapComponent implements OnInit {
   }
 
   public mapReadyHandler() {
-    console.log( typeof(this.location));
     this.mapService.getGeoLocation(this.location).subscribe((coordinates)=>{
-      console.log('hitting mapReady', coordinates);
+      
       this.lat = coordinates.lat;
       this.lng = coordinates.lng;
       this.ref.detectChanges();
     }, ()=> {
       this.isPositionError = true;
+      this.ref.detectChanges();
     })
 
   }
