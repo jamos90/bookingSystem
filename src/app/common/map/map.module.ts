@@ -21,7 +21,11 @@ const apiKey = key.key;
   imports: [
     
     AgmCoreModule.forRoot({
+<<<<<<< Updated upstream
         apiKey: apiKey
+=======
+        apiKey: 'AIzaSyB4gqEo27fBsjKgCfFXErzHZaNFJMcRKmg'
+>>>>>>> Stashed changes
       }),
       CommonModule
 
