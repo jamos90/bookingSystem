@@ -1,9 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
 const config = require('./config');
-
 const rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 const path = require('path');
@@ -12,7 +10,6 @@ const rentalRoutes = require('./routes/rentals');
 const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking')
 
-// mongodb+srv://jamosamos90:M3lb0urne15!@cluster0-rxeiw.mongodb.net/test?retryWrites=true
 
 mongoose.connect(config.dbUri).then(()=>{
     if(process.env.NODE_ENV !== 'production') {
