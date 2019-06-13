@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
 const config = require('./config');
+
 const rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 const path = require('path');
@@ -39,8 +41,9 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 
+
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, function(){
-    console.log("im running");
+   
 })
