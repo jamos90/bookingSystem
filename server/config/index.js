@@ -1,6 +1,6 @@
 if(process.env.NODE_ENV) {
-    module.exports = require('./prod');
+    module.exports = require('./prod.js');
 }
 else {
-    module.exports = require('./dev');
+    module.exports = require('./dev.js');
 }
