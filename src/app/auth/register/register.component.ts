@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    
+    this.errors = [];
   }
 
   register() {
