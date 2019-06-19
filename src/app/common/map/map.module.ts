@@ -5,6 +5,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapService } from '../map/map.service';
 import { CamelizePipe } from 'ngx-pipes';
 import { CommonModule } from '@angular/common';
+import { ApiKey} from '../../config/dev';
 
 
 
@@ -19,7 +20,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     
     AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyB4gqEo27fBsjKgCfFXErzHZaNFJMcRKmg'
+        apiKey: 'dsfsd' 
       }),
       CommonModule
 
