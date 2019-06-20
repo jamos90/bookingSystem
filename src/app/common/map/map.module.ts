@@ -20,7 +20,7 @@ import { ApiKey} from '../../config/dev';
   imports: [
     
     AgmCoreModule.forRoot({
-        apiKey: ''
+        apiKey: 'AIzaSyDQg6_JgzGPla4nwH_hTso0c5l5vRUokVY';
       }),
       CommonModule
 
