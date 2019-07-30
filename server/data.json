@@ -1,10 +1,9 @@
 {
     "rentals": [{
         "title": "West End Apartment",
-        "city": "Edinburgh",
+        "city": "edinburgh",
         "street": "Melvile Street",
         "category": "apartment",
-        "image": ["https://www.travelmag.com/wp-content/uploads/2018/09/8350764367_25b3b14be0_k.jpg", "https://duncanweddell.co.uk/wp-content/uploads/2018/01/edinburgh-skyline2.jpg"],
         "bedrooms": 1,
         "shared": false,
         "description": "Your own ‘home from home’, located in an historic property in Edinburgh’s West End, this glamorous apartment offers you the highest standards of comfort and fabulous attention to detail. Newly renovated and decorated to the highest of standards, this characterful property provides a stunning base from which to explore Edinburgh and is perfect for the Business traveller due to its convenient location.",
@@ -12,10 +11,9 @@
         },
         {
         "title": "Croft in the Western Isles",
-        "city": "Quidinish",
+        "city": "quidinish",
         "street": "Main Street",
         "category": "house",
-        "image": ["http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2014/05/Cuillin-Hills.jpg", "https://www.discoverferries.com/wp-content/uploads/Luskentyre-Bay-Isle-of-Harris.jpg"],
         "bedrooms": 4,
         "shared": false,
         "description": "If it's time to escape from it all, visit Harris! With an abundance of wildlife, arts, music, breathtakingly beautiful beaches and the eponymous Harris Tweed, it is the most magical place in which to explore, adventure, relax, unwind!",

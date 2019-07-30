@@ -1,9 +1,19 @@
 <a routerLink="/rentals/{{currentRental._id}}"> 
- <div class="rental-list-items-details">
-    <img class="rental-list-items-images" src="{{currentRental.image[0]}}" alt="">
+ <div [ngIf]="currentRental.city === 'edinburgh'" class="rental-list-items-details">
+   
+    <img class="rental-list-items-images" src="../../../assets/images/edinburgh_home_page.jpg" alt="">
     <div class="rental-detail-info">
       <h4 class="rental-list-tiems-title">{{currentRental.city | ucwords}} {{currentRental.title}}</h4>
       <p class="rental-list-tiems-text">{{currentRental.description}}</p>
     </div>
+  </div>
+
+  <div [ngIf]="currentRental.city === 'quidinish'" class="rental-list-items-details">
+   
+      <img class="rental-list-items-images" src="../../../assets/images/quidinish_home_page.jpg" alt="">
+      <div class="rental-detail-info">
+        <h4 class="rental-list-tiems-title">{{currentRental.city | ucwords}} {{currentRental.title}}</h4>
+        <p class="rental-list-tiems-text">{{currentRental.description}}</p>
+      </div>
   </div>
 </a>  
