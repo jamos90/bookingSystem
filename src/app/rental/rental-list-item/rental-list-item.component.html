@@ -1,5 +1,5 @@
 <a routerLink="/rentals/{{currentRental._id}}"> 
- <div [ngIf]="currentRental.city === 'edinburgh'" class="rental-list-items-details">
+ <div [ngIf]="{{currentRental.city === 'edinburgh'}}" class="rental-list-items-details">
    
     <img class="rental-list-items-images" src="../../../assets/images/edinburgh_home_page.jpg" alt="">
     <div class="rental-detail-info">
@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div [ngIf]="currentRental.city === 'quidinish'" class="rental-list-items-details">
+  <div [ngIf]="{{currentRental.city === 'quidinish'}}" class="rental-list-items-details">
    
       <img class="rental-list-items-images" src="../../../assets/images/quidinish_home_page.jpg" alt="">
       <div class="rental-detail-info">
