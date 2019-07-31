@@ -1,7 +1,10 @@
 
 <section id="rentalDetails" *ngIf="rental">
-  <div class="upper-section">
-      <img class="rental-image" src="{{rental.image[1]}}" alt="">
+  <div class="upper-section" *ngIf="rental.city === 'edinburgh'">
+    <img class="rental-image" src="../../../assets/images/edinburgh_content_page.jpg" alt="">
+  </div>
+  <div class="upper-section" *ngIf="rental.city === 'quidinish'">
+    <img class="rental-image" src="../../../assets/images/quidinish_content_page.jpg" alt="">
   </div>
   <div class="rental-details-body-content">
     <div class="details-section">
